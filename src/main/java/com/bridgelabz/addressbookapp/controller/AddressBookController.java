@@ -21,15 +21,16 @@ import java.util.concurrent.atomic.AtomicLong;
 public class AddressBookController {
 	@RequestMapping(value = { "", "/", "/get" })
 	public ResponseEntity<String> getContactData() {
-
 		return new ResponseEntity<String>("Get call success", HttpStatus.OK);
-
 	}
+
 	@GetMapping("/get/{contactId}")
-    public ResponseEntity<String> getContactData(@PathVariable("contactId") int contactId)
-    {
-        return new ResponseEntity<String>("Get call success for id",HttpStatus.OK);
+	public ResponseEntity<String> getContactData(@PathVariable("contactId") int contactId) {
+		return new ResponseEntity<String>("Get call success for id", HttpStatus.OK);
+	}
 
-
-    }
+	@PostMapping("/create")
+	public ResponseEntity<String> addContactData(@RequestBody ContactDTO contactDTO) {
+		return new ResponseEntity<String>("Created contact data for " + contactDTO, HttpStatus.OK);
+	}
 }
