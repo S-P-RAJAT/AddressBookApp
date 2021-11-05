@@ -1,11 +1,20 @@
 package com.bridgelabz.addressbookapp.dto;
 
-public class ContactDTO 
-{
-    public String firstName;
-    public String lastName;
-    public String address;
-    
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
+public class ContactDTO {
+	@NotEmpty(message = "Contact name cannot be null")
+	@Pattern(regexp = "^[A-Z]{1}[a-z]{2,}$", message = "First Name Invalid")
+	public String firstName;
+
+	@NotEmpty(message = "Contact name cannot be null")
+	@Pattern(regexp = "^[A-Z]{1}[a-z]{2,}$", message = "Last Name Invalid")
+	public String lastName;
+
+	@Pattern(regexp = "^[A-Z,a-z,0-9, ()#-]{3,}$", message = "Address Invalid")
+	public String address;
+
 	public ContactDTO(String firstName, String lastName, String address) {
 		super();
 		this.firstName = firstName;
@@ -13,27 +22,9 @@ public class ContactDTO
 		this.address = address;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	@Override
+	public String toString() 
+	{
+		return "ContactDTO [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + "]";
 	}
 }
