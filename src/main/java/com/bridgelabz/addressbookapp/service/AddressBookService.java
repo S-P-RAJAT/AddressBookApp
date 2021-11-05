@@ -11,33 +11,44 @@ import org.springframework.stereotype.Service;
 @Service
 public class AddressBookService implements IAddressBookService {
 
-	@Override
-	public List<Contact> getContact() {
-		List<Contact> contactList = new ArrayList<>();
-		contactList.add(new Contact(1, new ContactDTO("Rahul","Chaturvedi","Hosa Road, Electronic City")));
-		return contactList;
-	}
+    List<Contact> contactList = new ArrayList<>();
 
-	@Override
-	public Contact getContactById(int contactId) {
-		Contact contact = new Contact(1, new ContactDTO("Rahul","Chaturvedi","Hosa Road, Electronic City"));
-		return contact;
-	}
+    @Override
+    public List<Contact> getContact() 
+    {
+        return contactList;
+    }
 
-	@Override
-	public Contact createContact(ContactDTO contactDTO) {
-		Contact contact = new Contact(1, contactDTO);
-		return contact;
-	}
+    @Override
+    public Contact getContactById(int contactId) 
+    {
+        return contactList.get(contactId-1);
+    }
 
-	@Override
-	public Contact updateContact(int contactId, ContactDTO contactDTO) {
-		Contact contact = new Contact(1, contactDTO);
-		return contact;
-	}
+    @Override
+    public Contact createContact(ContactDTO contactDTO) 
+    {
+        Contact contact = new Contact(contactList.size()+1,contactDTO);
+        contactList.add(contact);
+        return contact;
 
-	@Override
-	public void deleteContact(int contactId) {
+    }
 
-	}
+    @Override
+    public Contact updateContact(int contactId, ContactDTO contactDTO) 
+    {
+        Contact contact = this.getContactById(contactId);
+        contact.setFirstName(contactDTO.firstName);
+        contact.setLastName(contactDTO.lastName);
+        contact.setAddress(contactDTO.address);
+        contactList.set(contactId-1,contact);
+        return contact;
+    }
+
+    @Override
+    public void deleteContact(int contactId) 
+    {
+        contactList.remove(contactId-1);   
+        
+    }
 }
