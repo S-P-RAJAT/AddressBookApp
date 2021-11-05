@@ -25,4 +25,11 @@ public class AddressBookController {
 		return new ResponseEntity<String>("Get call success", HttpStatus.OK);
 
 	}
+	@GetMapping("/get/{contactId}")
+    public ResponseEntity<String> getContactData(@PathVariable("contactId") int contactId)
+    {
+        return new ResponseEntity<String>("Get call success for id",HttpStatus.OK);
+
+
+    }
 }
