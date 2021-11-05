@@ -33,4 +33,10 @@ public class AddressBookController {
 	public ResponseEntity<String> addContactData(@RequestBody ContactDTO contactDTO) {
 		return new ResponseEntity<String>("Created contact data for " + contactDTO, HttpStatus.OK);
 	}
+
+	@PutMapping("/update/{contactId}")
+	public ResponseEntity<String> updateContactData(@PathVariable("contactId") int contactId,
+			@RequestBody ContactDTO contactDTO) {
+		return new ResponseEntity<String>("Updated contact data for " + contactDTO, HttpStatus.OK);
+	}
 }
