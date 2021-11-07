@@ -2,11 +2,21 @@ package com.bridgelabz.addressbookapp.model;
 
 
 import com.bridgelabz.addressbookapp.dto.ContactDTO;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.Data;
 
+@Entity
+@Table(name = "contact")
 public @Data class Contact 
 {
+	@Id
+	@Column(name = "contact_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int contactId;
 	private String firstName;
 	private String lastName;
@@ -24,6 +34,10 @@ public @Data class Contact
 	public Contact(int contactId, ContactDTO contactDTO) {
 		super();
 		this.contactId = contactId;
+		this.updateContact(contactDTO);
+		
+	}
+	public void updateContact(ContactDTO contactDTO) {
 		this.firstName= contactDTO.firstName;
 		this.lastName= contactDTO.lastName;
 		this.phoneNumber = contactDTO.phoneNumber;
@@ -33,7 +47,6 @@ public @Data class Contact
 		this.zip = contactDTO.zip;
 		this.email = contactDTO.email;
 	}
-    
     
 
 }
