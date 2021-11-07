@@ -3,51 +3,35 @@ package com.bridgelabz.addressbookapp.model;
 
 import com.bridgelabz.addressbookapp.dto.ContactDTO;
 
-public class Contact 
+import lombok.Data;
+
+public @Data class Contact 
 {
 	private int contactId;
 	private String firstName;
-    private String lastName;
+	private String lastName;
+    private String phoneNumber;
     private String address;
+    private String city;
+    private String state;
+    private String zip;
+    private String email;
     
-	public Contact(int contactId,ContactDTO contactDTO) 
-	{
+    public Contact() {
+    	
+    }
+    
+	public Contact(int contactId, ContactDTO contactDTO) {
+		super();
 		this.contactId = contactId;
-		this.firstName = contactDTO.firstName;
-		this.lastName = contactDTO.lastName;
+		this.firstName= contactDTO.firstName;
+		this.lastName= contactDTO.lastName;
+		this.phoneNumber = contactDTO.phoneNumber;
 		this.address = contactDTO.address;
-	}
-	public int getContactId() 
-	{
-		return contactId;
-	}
-	public void setContactId(int contactId) 
-	{
-		this.contactId = contactId;
-	}
-	public String getFirstName() 
-	{
-		return firstName;
-	}
-	public void setFirstName(String firstName) 
-	{
-		this.firstName = firstName;
-	}
-	public String getLastName() 
-	{
-		return lastName;
-	}
-	public void setLastName(String lastName) 
-	{
-		this.lastName = lastName;
-	}
-	public String getAddress() 
-	{
-		return address;
-	}
-	public void setAddress(String address) 
-	{
-		this.address = address;
+		this.city = contactDTO.city;
+		this.state = contactDTO.state;
+		this.zip = contactDTO.zip;
+		this.email = contactDTO.email;
 	}
     
     
