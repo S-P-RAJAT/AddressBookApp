@@ -31,7 +31,7 @@ public @Data class Contact
     	
     }
     
-	public Contact(int contactId, ContactDTO contactDTO) {
+	public Contact(ContactDTO contactDTO) {
 		super();
 		this.contactId = contactId;
 		this.updateContact(contactDTO);
